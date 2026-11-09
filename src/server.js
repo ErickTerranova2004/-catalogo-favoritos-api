@@ -12,7 +12,15 @@ async function iniciar() {
     process.exit(1);
   }
 
-  const servidor = app.listen(port, () => {
+  // En Express 5, si el puerto no está disponible el error llega a este callback.
+  const servidor = app.listen(port, (err) => {
+    if (err) {
+      const motivo = err.code === 'EADDRINUSE'
+        ? `el puerto ${port} ya está en uso (¿hay otra terminal con el servidor encendido?)`
+        : err.message;
+      console.error(`No se pudo iniciar el servidor: ${motivo}`);
+      process.exit(1);
+    }
     console.log(`API escuchando en http://localhost:${port}/api`);
   });
 
