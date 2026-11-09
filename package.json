@@ -1,0 +1,37 @@
+{
+  "name": "catalogo-favoritos-api",
+  "version": "1.0.0",
+  "description": "API REST de catálogo de productos con favoritos, JWT y roles (Node.js + Express + PostgreSQL)",
+  "main": "src/server.js",
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "nodemon src/server.js",
+    "db:init": "node scripts/initDb.js",
+    "db:reset": "node scripts/initDb.js --reset",
+    "admin:crear": "node scripts/crearAdmin.js",
+    "test:postman": "newman run postman/catalogo.postman_collection.json -e postman/local.postman_environment.json --export-environment postman/local.postman_environment.json",
+    "test:persistencia": "newman run postman/catalogo.postman_collection.json -e postman/local.postman_environment.json --folder \"09 - Persistencia (ejecutar tras reiniciar)\""
+  },
+  "keywords": [
+    "express",
+    "postgresql",
+    "jwt",
+    "api"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bcryptjs": "^3.0.3",
+    "dotenv": "^18.0.9",
+    "express": "^5.3.0",
+    "jsonwebtoken": "^9.0.3",
+    "pg": "^8.23.1"
+  },
+  "devDependencies": {
+    "newman": "^6.2.3",
+    "nodemon": "^3.1.14"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
